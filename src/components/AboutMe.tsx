@@ -40,7 +40,7 @@ export default function AboutMe() {
                 borderRadius: 2,
               }}
             />
-
+            {/* //demo */}
             <Typography
               variant="body1"
               sx={{ color: "#d1d5db", mb: 2, maxWidth: 800, lineHeight: 1.7 }}
@@ -54,7 +54,6 @@ export default function AboutMe() {
               third-party services including Salesforce and other REST APIs. I
               also maintain a growing knowledge of cloud fundamentals on Azure.
             </Typography>
-
             <Typography
               variant="body2"
               sx={{ color: "#9ca3af", maxWidth: 800, lineHeight: 1.7 }}
