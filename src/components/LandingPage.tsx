@@ -90,9 +90,7 @@ export default function LandingPage(): JSX.Element {
         <Container maxWidth="xl" sx={{ pt: 6 }}>
           {/* Header */}
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 800 }}>
-              Contact
-            </Typography>
+            <Typography variant="h4" sx={{ fontWeight: 800 }}></Typography>
 
             <Stack direction="row" spacing={1} alignItems="center">
               <Tooltip title={`Toggle ${dark ? "light" : "dark"} mode`}>
