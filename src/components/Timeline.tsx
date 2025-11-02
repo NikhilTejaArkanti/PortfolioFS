@@ -21,22 +21,7 @@ type Props = {
 };
 
 export default function Timeline({
-  data = [
-    {
-      icon: FiBookOpen,
-      title: "National Institute of Technology, Warangal",
-      details: [
-        "Bachelor of Technology in Electrical and Electroncis Engineering(B.Tech. EEE)",
-      ],
-      date: "2017 — 2021",
-    },
-    {
-      icon: FiBookOpen,
-      title: "Greenland International College",
-      details: ["+2 Science"],
-      date: "2015 — 2017",
-    },
-  ],
+  data = [],
   accent = "#FACC15",
   leftColumnWidth = 12,
 }: Props) {

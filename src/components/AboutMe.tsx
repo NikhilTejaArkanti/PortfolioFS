@@ -34,7 +34,6 @@ export default function AboutMe() {
   ];
 
   return (
-    // NOTE: use a Box here — don't return a Paper (outer Paper already wraps this)
     <Box>
       {/* Intro - optional centered card effect */}
       <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>

@@ -1,9 +1,56 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { FiBookOpen, FiBriefcase } from "react-icons/fi";
 import Timeline from "./Timeline.tsx";
+import CertificateCarousel, { type Cert } from "./CertificateCarousel.tsx";
+import AZURE from "../assets/AZURE.png";
+
+const calculateMonths = (start: string): string => {
+  try {
+    const startDate = new Date(start + " 1"); // e.g. "Jan 2024 1"
+    const now = new Date();
+
+    const years = now.getFullYear() - startDate.getFullYear();
+    const months = now.getMonth() - startDate.getMonth();
+    const totalMonths = years * 12 + months;
+
+    if (totalMonths <= 0) return "";
+    const display =
+      totalMonths >= 12
+        ? `${Math.floor(totalMonths / 12)} yr${
+            Math.floor(totalMonths / 12) > 1 ? "s" : ""
+          } ${totalMonths % 12 ? `${totalMonths % 12} mo` : ""}`
+        : `${totalMonths} mo${totalMonths > 1 ? "s" : ""}`;
+
+    return `• ${display}`;
+  } catch {
+    return "";
+  }
+};
+
+const certs: Cert[] = [
+  {
+    title: "AZ-900: Microsoft Azure Fundamentals",
+    issuer: "Microsoft",
+    date: "2025",
+    image: AZURE,
+  },
+  {
+    title: "AZ-900: Microsoft Azure Fundamentals",
+    issuer: "Microsoft",
+    date: "2025",
+    image: AZURE,
+  },
+  {
+    title: "AZ-900: Microsoft Azure Fundamentals",
+    issuer: "Microsoft",
+    date: "2025",
+    image: AZURE,
+  },
+];
 
 export default function Resume() {
+  const theme = useTheme();
   const experience = [
     {
       icon: FiBriefcase,
@@ -12,7 +59,10 @@ export default function Resume() {
         "Built REST APIs with Node/Express",
         "Worked on React-based frontends & Nest.js based backends",
       ],
-      date: "Jan 2024 — Present ",
+      date: (() => {
+        const base = "Jan 2024 — Present";
+        return `${base} ${calculateMonths("Jan 2024")}`;
+      })(),
     },
   ];
 
@@ -23,7 +73,7 @@ export default function Resume() {
       details: [
         "Bachelor of Technology in Electrical and Electronics Engineering (B.Tech. EEE)",
       ],
-      date: "2017 — 2021",
+      date: "2020 — 2024",
     },
   ];
 
@@ -94,6 +144,14 @@ export default function Resume() {
       </Box>
 
       <Timeline data={education} />
+
+      {/* Certificate Carousel */}
+      <CertificateCarousel
+        items={certs}
+        intervalMs={5000}
+        height={300}
+        darkMode={theme.palette.mode == "dark"}
+      />
     </Box>
   );
 }
