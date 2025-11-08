@@ -125,7 +125,7 @@ export default function CertificateCarousel({
           border: `1px solid ${borderColor}`,
         }}
       >
-        {/* Sliding Track */}
+        {/* Sliding Track.. */}
         <Box
           sx={{
             display: "flex",
