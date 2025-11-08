@@ -1,0 +1,1 @@
+//publish it first as it is a static single page component

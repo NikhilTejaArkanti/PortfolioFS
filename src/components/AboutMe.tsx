@@ -1,143 +1,133 @@
-import { Box, Typography, Paper, Card, CardContent } from "@mui/material";
+// AboutMe.tsx
+import React from "react";
+import {
+  Box,
+  Typography,
+  Paper,
+  CardContent,
+  useTheme,
+  alpha,
+} from "@mui/material";
 
 export default function AboutMe() {
+  const theme = useTheme();
+
+  // subtle card bg for items (works both light/dark)
+  const itemBg =
+    theme.palette.mode === "dark"
+      ? alpha("#ffffff", 0.02)
+      : alpha("#000000", 0.02);
+
   const tech = [
-    "React",
+    "System Design",
+    "React.js",
     "TypeScript",
-    "Node.js / Express",
-    "Next.js",
-    "Redux / Zustand",
-    "MUI / Tailwind",
+    "Node.js / NestJS",
+    "Java / Spring Boot",
+    "REST API Design",
     "MongoDB / MySQL",
-    "Azure (AZ-900)",
-    "Framer Motion",
-    "REST & GraphQL",
+    "Microsoft Azure (AZ-900)",
+    "n8n Automation",
+    "Docker / AWS ECS",
+    "Performance Testing (JMeter, Selenium)",
+    "Terraform"
   ];
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        bgcolor: "#0b0b0c",
-        color: "#e0e0e0",
-        p: { xs: 3, md: 6 },
-        fontFamily: "sans-serif",
-      }}
-    >
-      <Box sx={{ maxWidth: "1200px", mx: "auto" }}>
-        <Paper
-          elevation={3}
-          sx={{
-            bgcolor: "#0f0f10",
-            borderRadius: "16px 16px 0 0",
-            overflow: "hidden",
-          }}
-        >
-          <Box sx={{ p: 4 }}>
-            <Box
-              sx={{
-                width: 50,
-                borderRadius: 2,
-              }}
-            />
+    <Box>
+      {/* Intro - optional centered card effect */}
+      <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
+        <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.7 }}>
+          I build performant web apps with clean UI and reliable backend
+          systems. Currently focusing on React + TypeScript for frontends and
+          Node/Express with MongoDB/MySQL for backend.
+        </Typography>
+      </Box>
 
-            <Typography
-              variant="body1"
-              sx={{ color: "#d1d5db", mb: 2, maxWidth: 800, lineHeight: 1.7 }}
-            >
-              I build full-stack web applications with a focus on clean frontend
-              experience and reliable backend systems. My main stack is React +
-              TypeScript for UI and Node/Express for services. I enjoy improving
-              user experience through clear component structure, predictable
-              state management, and small, testable APIs. On the backend I work
-              with both MongoDB and MySQL and have experience integrating
-              third-party services including Salesforce and other REST APIs. I
-              also maintain a growing knowledge of cloud fundamentals on Azure.
-            </Typography>
+      {/* Skills */}
+      <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
+        <Box sx={{ width: "100%", maxWidth: 880 }}>
+          <Typography variant="h5" fontWeight={600} mb={2}>
+            Skills
+          </Typography>
 
-            <Typography
-              variant="body2"
-              sx={{ color: "#9ca3af", maxWidth: 800, lineHeight: 1.7 }}
-            >
-              I like solving practical problems — automating repetitive tasks,
-              improving reliability, and making interfaces that are pleasant to
-              use. I prefer straightforward, maintainable code over cleverness,
-              and I try to keep performance and accessibility in mind while
-              shipping features.
-            </Typography>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "repeat(2,1fr)",
+                md: "repeat(3,1fr)",
+              },
+              gap: 2,
+            }}
+          >
+            {tech.map((t) => (
+              <Box
+                key={t}
+                sx={{
+                  borderRadius: 2,
+                  px: 2,
+                  py: 1.25,
+                  textAlign: "center",
+                  background: itemBg,
+                }}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                  {t}
+                </Typography>
+              </Box>
+            ))}
           </Box>
-
-          <Box sx={{ p: 4 }}>
-            <Typography variant="h5" fontWeight="600" color="white" mb={2}>
-              Skills
-            </Typography>
-            <Box sx={{ maxWidth: 800 }}>
-              {tech.map((t) => (
-                <Box key={t}>
-                  <Paper
-                    elevation={1}
-                    sx={{
-                      bgcolor: "#121212",
-                      border: "1px solid #1b1b1c",
-                      borderRadius: 2,
-                      textAlign: "center",
-                      py: 1,
-                      color: "#e0e0e0",
-                      fontSize: 14,
-                    }}
-                  >
-                    {t}
-                  </Paper>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Paper>
-
-        {/* Cards section */}
-        <Box>
-          <InfoCard
-            title="Web Development"
-            desc="Building responsive React apps and Next.js sites. Focus on performance, accessibility and clear component design."
-          />
-          <InfoCard
-            title="Backend & APIs"
-            desc="Designing RESTful services in Node.js/Express, integrating third-party APIs and ensuring reliability."
-          />
-          <InfoCard
-            title="UI/UX & Frontend"
-            desc="Polished UI using TypeScript, MUI or Tailwind, with attention to interaction and micro-animations."
-          />
-          <InfoCard
-            title="Automation & Cloud"
-            desc="Automating workflows, CI/CD basics and Azure fundamentals (AZ-900)."
-          />
         </Box>
       </Box>
+
+      {/* Info cards - use Paper with theme divider, not hard-coded border */}
+      {/* <Box sx={{ display: "grid", gap: 2, maxWidth: 1100 }}>
+        <InfoCard
+          title="Web Development"
+          desc="Building responsive React apps and Next.js sites. Focus on performance, accessibility and clear component design."
+        />
+        <InfoCard
+          title="Backend & APIs"
+          desc="Designing RESTful services in Node.js/Express, integrating third-party APIs and ensuring reliability."
+        />
+        <InfoCard
+          title="UI/UX & Frontend"
+          desc="Polished UI using TypeScript, MUI or Tailwind, with attention to interaction and micro-animations."
+        />
+        <InfoCard
+          title="Automation & Cloud"
+          desc="Automating workflows, CI/CD basics and Azure fundamentals (AZ-900)."
+        />
+      </Box> */}
     </Box>
   );
 }
 
 function InfoCard({ title, desc }: { title: string; desc: string }) {
+  const theme = useTheme();
+  const divider = theme.palette.divider;
+
   return (
-    <Box>
-      <Card
-        sx={{
-          bgcolor: "#0f0f10",
-          border: "1px solid #1b1b1c",
-          borderRadius: 3,
-          color: "#e0e0e0",
-        }}
-      >
-        <CardContent>
-          <Typography variant="h6" fontWeight="bold" color="white">
-            {title}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "#9ca3af", mt: 1 }}>
-            {desc}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Box>
+    <Paper
+      elevation={1}
+      sx={{
+        borderRadius: 2,
+        overflow: "hidden",
+        bgcolor:
+          theme.palette.mode === "dark" ? alpha("#ffffff", 0.02) : "#fff",
+        border: `1px solid ${alpha(divider, 1)}`, // uses theme divider (adapts to mode)
+      }}
+    >
+      <CardContent>
+        <Typography variant="h6" fontWeight={700}>
+          {title}
+        </Typography>
+        <Typography variant="body2" sx={{ mt: 1 }}>
+          {desc}
+        </Typography>
+      </CardContent>
+    </Paper>
   );
 }

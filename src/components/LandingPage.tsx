@@ -20,6 +20,7 @@ import {
   Tabs,
   Tab,
   Grid,
+  Link,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -33,24 +34,22 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Projects from "./Projects";
 import AboutMe from "./AboutMe";
+import Resume from "./Resume";
 
-/**
- * ABOUT YOU (replace placeholders as needed)
- */
 const ME = {
   name: "Nikhil Teja",
-  title: "Frontend Engineer",
-  bio: "Frontend engineer focused on building polished React + TypeScript apps, design systems, and developer-friendly tools. I work on productivity tracking, leaderboards, and short-form video tooling. I enjoy performance tuning, simple architectures and mechanical keyboards.",
-  email: "nikhil.teja@example.com",
-  phone: "+91 98765 43210", // replace or remove
+  title: "Associate Software Engineer @BlueYonder | NITW '24",
+  // bio: "Full-stack engineer with a strong foundation in system design and cloud fundamentals (Microsoft Azure AZ-900 certified). Experienced in building high-performance web applications using React.js and Node.js.",
+  email: "nikhilteja.ark@gmail.com",
+  // phone: "+91 98765 43210",
   location: "Hyderabad, India",
   website: "https://your-website.com",
   socials: {
-    github: "https://github.com/your-username",
-    linkedin: "https://linkedin.com/in/your-name",
-    twitter: "https://twitter.com/your-handle",
+    github: "https://github.com/NikhilTejaArkanti",
+    linkedin: "https://www.linkedin.com/in/nikhiltejaa/",
   },
-  avatarUrl: "", // replace with a URL if you want a photo
+  avatarUrl:
+    "https://media.licdn.com/dms/image/v2/D5603AQGgDh1z_BfG8g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1732861642881?e=1763596800&v=beta&t=HgM2XMqxHrkWKabMY_yiUeqpt7Pvv1svlNHXU2VR-pY",
 };
 
 export default function LandingPage(): JSX.Element {
@@ -80,6 +79,34 @@ export default function LandingPage(): JSX.Element {
     [dark]
   );
 
+  const renderTitle = () => {
+    return (
+      <>
+        SDE1 @
+        <Link
+          href="https://en.wikipedia.org/wiki/Blue_Yonder"
+          target="_blank"
+          rel="noopener noreferrer"
+          underline="hover"
+          sx={{ color: "#FACC15", fontWeight: 500, mx: 0.4 }}
+        >
+          BlueYonder
+        </Link>
+        |{" "}
+        <Link
+          href="https://en.wikipedia.org/wiki/National_Institute_of_Technology,_Warangal"
+          target="_blank"
+          rel="noopener noreferrer"
+          underline="hover"
+          sx={{ color: "#FACC15", fontWeight: 500, ml: 0.4 }}
+        >
+          NITW
+        </Link>{" "}
+        ’24
+      </>
+    );
+  };
+
   const handleChange = (_: React.SyntheticEvent, v: number) => setTab(v);
 
   return (
@@ -87,35 +114,7 @@ export default function LandingPage(): JSX.Element {
       <CssBaseline />
 
       <Box sx={{ minHeight: "100vh", bgcolor: "background.default", pb: 8 }}>
-        <Container maxWidth="xl" sx={{ pt: 6 }}>
-          {/* Header */}
-          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 800 }}>
-              Contact
-            </Typography>
-
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Tooltip title={`Toggle ${dark ? "light" : "dark"} mode`}>
-                <IconButton
-                  onClick={() => setDark((d) => !d)}
-                  color="inherit"
-                  size="large"
-                >
-                  {dark ? <Brightness7Icon /> : <Brightness4Icon />}
-                </IconButton>
-              </Tooltip>
-
-              <Button
-                variant="outlined"
-                startIcon={<MailOutlineIcon />}
-                href="#contact"
-                size="small"
-              >
-                Get in touch
-              </Button>
-            </Stack>
-          </Box>
-
+        <Box sx={{ width: "100%", pt: 6, px: { xs: 2, sm: 3 } }}>
           {/* Main layout: sidebar + main content */}
           <Box
             sx={{
@@ -124,13 +123,19 @@ export default function LandingPage(): JSX.Element {
               gap: 4,
             }}
           >
-            {/* SIDEBAR */}
+            {/* Left Constant content */}
             <Paper
               sx={{
+                position: "sticky",
+                top: 16,
+                alignSelf: "flex-start",
+                width: { xs: "100%", md: 320 },
+                maxWidth: "100%",
+                maxHeight: "calc(100vh - 32px)",
+                overflowY: "auto",
                 borderRadius: 3,
                 p: 3,
-                minHeight: 420,
-                bgcolor: "background.paper",
+                bgcolor: theme.palette.mode === "dark" ? "#232324" : "#fff",
                 boxShadow: (t) => t.shadows[2],
               }}
             >
@@ -164,15 +169,15 @@ export default function LandingPage(): JSX.Element {
                   color="text.secondary"
                   sx={{ mt: 0.5 }}
                 >
-                  {ME.title}
+                  {renderTitle()}
                 </Typography>
               </Box>
 
-              <Box sx={{ my: 2 }}>
+              {/* <Box sx={{ my: 2 }}>
                 <Typography variant="body2" color="text.secondary">
                   {ME.bio}
                 </Typography>
-              </Box>
+              </Box> */}
 
               <Box sx={{ mt: 3 }}>
                 <Stack spacing={2}>
@@ -194,27 +199,6 @@ export default function LandingPage(): JSX.Element {
                         EMAIL
                       </Typography>
                       <Typography variant="body2">{ME.email}</Typography>
-                    </Box>
-                  </Stack>
-
-                  <Stack direction="row" spacing={2} alignItems="center">
-                    <Box
-                      sx={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: 1.5,
-                        display: "grid",
-                        placeItems: "center",
-                        bgcolor: "background.default",
-                      }}
-                    >
-                      <PhoneAndroidIcon />
-                    </Box>
-                    <Box>
-                      <Typography variant="caption" color="text.secondary">
-                        PHONE
-                      </Typography>
-                      <Typography variant="body2">{ME.phone}</Typography>
                     </Box>
                   </Stack>
 
@@ -271,112 +255,171 @@ export default function LandingPage(): JSX.Element {
                 >
                   <LinkedInIcon />
                 </IconButton>
-                <IconButton
-                  aria-label="twitter"
-                  component="a"
-                  href={ME.socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="large"
-                  color="inherit"
-                >
-                  <TwitterIcon />
-                </IconButton>
-                <IconButton
-                  aria-label="website"
-                  component="a"
-                  href={ME.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="large"
-                  color="inherit"
-                >
-                  <LanguageIcon />
-                </IconButton>
               </Box>
             </Paper>
 
             {/* MAIN CONTENT */}
             <Paper
               sx={{
+                width: "100%",
                 borderRadius: 3,
                 p: 0,
-                bgcolor: "background.paper",
+                bgcolor: theme.palette.mode === "dark" ? "#232324" : "#fbfbfb",
                 boxShadow: (t) => t.shadows[2],
+                overflow: "hidden",
+                position: "relative",
               }}
             >
-              {/* Header row with title and tabs */}
+              {/* Header (sticky) */}
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  px: 3,
+                  position: "sticky",
+                  top: 0,
+                  zIndex: 5,
+                  px: { xs: 2, sm: 3 },
                   py: 2,
-                  borderBottom: "1px solid #1b1b1c",
+                  bgcolor:
+                    theme.palette.mode === "dark" ? "#232324" : "#fbfbfb",
                 }}
               >
-                <Box sx={{ flex: 1 }} />
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <Box sx={{ flex: 1 }} />
 
-                <Box
-                  sx={{
-                    alignSelf: "flex-start",
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    bgcolor: "transparent",
-                  }}
-                >
-                  <Tabs
-                    value={tab}
-                    onChange={handleChange}
-                    aria-label="top-right tabs"
+                  <Box
                     sx={{
-                      minHeight: 48,
-                      "& .MuiTabs-flexContainer": { gap: 2, padding: "6px" },
-                      "& .MuiTabs-indicator": { display: "none" },
+                      alignSelf: "flex-start",
+                      borderRadius: "16px",
+                      overflow: "hidden",
+                      bgcolor: "transparent",
                     }}
                   >
-                    {["About", "Resume", "Portfolio", "Blog", "Contact"].map(
-                      (label, i) => (
-                        <Tab
-                          key={label}
-                          label={label}
-                          value={i}
-                          sx={{
-                            textTransform: "none",
-                            minWidth: 0,
-                            px: 2.2,
-                            py: 1,
-                            borderRadius: "12px",
-                            fontWeight: 600,
-                            fontSize: 14,
-                            color: tab === i ? "#FACC15" : "#ccc",
-                            bgcolor: tab === i ? "#171717" : "transparent",
-                            "&:hover": { bgcolor: "#151515" },
-                          }}
-                        />
-                      )
-                    )}
-                  </Tabs>
+                    <Tabs
+                      value={tab}
+                      onChange={handleChange}
+                      aria-label="top-right tabs"
+                      sx={{
+                        minHeight: 0,
+                        "& .MuiTabs-flexContainer": { gap: 2, padding: "6px" },
+                        "& .MuiTabs-indicator": { display: "none" },
+                      }}
+                    >
+                      {["Resume", "Portfolio", "Contact", "About"].map(
+                        (label, i) => (
+                          <Tab
+                            key={label}
+                            label={label}
+                            value={i}
+                            sx={{
+                              textTransform: "none",
+                              minWidth: 0,
+                              px: 2.2,
+                              py: 1,
+                              borderRadius: "12px",
+                              fontWeight: 600,
+                              fontSize: 14,
+                              color:
+                                tab === i
+                                  ? dark
+                                    ? "#FACC15"
+                                    : "#111"
+                                  : dark
+                                  ? "#666"
+                                  : "#555",
+                              bgcolor:
+                                tab === i
+                                  ? dark
+                                    ? "#171717"
+                                    : "#FACC1522"
+                                  : "transparent",
+                              "&:hover": {
+                                bgcolor: dark ? "#151515" : "#f2f2f2",
+                                color: dark ? "#FFF" : "#111",
+                              },
+                              "&.Mui-focusVisible": { outline: "none" },
+                              transition: "all 0.18s ease",
+                            }}
+                          />
+                        )
+                      )}
+
+                      <Tooltip title={`Toggle ${dark ? "light" : "dark"} mode`}>
+                        <IconButton
+                          onClick={() => setDark((d) => !d)}
+                          color="inherit"
+                          size="large"
+                        >
+                          {dark ? <Brightness7Icon /> : <Brightness4Icon />}
+                        </IconButton>
+                      </Tooltip>
+                    </Tabs>
+                  </Box>
                 </Box>
               </Box>
 
-              <Box sx={{ p: 4 }}>
-                {tab === 0 && <AboutMe />}
+              {/* Content area */}
+              <Box
+                sx={{
+                  p: { xs: 2, sm: 4 },
+                  width: "100%",
+                  minWidth: 0,
+                  boxSizing: "border-box",
+                }}
+              >
+                {tab === 0 && (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      maxWidth: 1100,
+                      mx: "auto",
+                      px: { xs: 1, sm: 2 },
+                    }}
+                  >
+                    <Resume />
+                  </Box>
+                )}
+
                 {tab === 1 && (
-                  <Panel title="Resume" body="Resume content goes here." />
+                  <Box
+                    sx={{
+                      width: "100%",
+                      maxWidth: 1100,
+                      mx: "auto",
+                      px: { xs: 1, sm: 2 },
+                    }}
+                  >
+                    <Projects />
+                  </Box>
                 )}
-                {tab === 2 && <Projects />}
+
+                {tab === 2 && (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      maxWidth: 1100,
+                      mx: "auto",
+                      px: { xs: 1, sm: 2 },
+                    }}
+                  >
+                    <Panel title="Contact" body="Contact details here." />
+                  </Box>
+                )}
+
                 {tab === 3 && (
-                  <Panel title="Blog" body="Blog list / posts here." />
-                )}
-                {tab === 4 && (
-                  <Panel title="Contact" body="Contact details here." />
+                  <Box
+                    sx={{
+                      width: "100%",
+                      maxWidth: 1100,
+                      mx: "auto",
+                      px: { xs: 1, sm: 2 },
+                    }}
+                  >
+                    <AboutMe />
+                  </Box>
                 )}
               </Box>
             </Paper>
           </Box>
-        </Container>
+        </Box>
       </Box>
     </ThemeProvider>
   );

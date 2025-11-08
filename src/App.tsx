@@ -5,6 +5,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import React from "react";
 import LandingPage from "./components/LandingPage";
+import CursorTrail from "./components/CursorTrail";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,11 +13,9 @@ function App() {
   return (
     <>
       <React.Fragment>
+        {/* <CursorTrail size={8} trailLength={12} opacity={0.9}></CursorTrail> */}
         <LandingPage />
       </React.Fragment>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
