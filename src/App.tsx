@@ -13,7 +13,6 @@ function App() {
   return (
     <>
       <React.Fragment>
-        {/* <CursorTrail size={8} trailLength={12} opacity={0.9}></CursorTrail> */}
         <LandingPage />
       </React.Fragment>
     </>
