@@ -7,16 +7,12 @@ import React from "react";
 import LandingPage from "./components/LandingPage";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
       <React.Fragment>
         <LandingPage />
       </React.Fragment>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

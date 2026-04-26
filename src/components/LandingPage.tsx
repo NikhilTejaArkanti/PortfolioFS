@@ -33,24 +33,34 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Projects from "./Projects";
 import AboutMe from "./AboutMe";
+import Resume from "./Resume";
 
 /**
- * ABOUT YOU (replace placeholders as needed)
+ * ABOUT YOU
  */
 const ME = {
   name: "Nikhil Teja",
-  title: "Frontend Engineer",
-  bio: "Frontend engineer focused on building polished React + TypeScript apps, design systems, and developer-friendly tools. I work on productivity tracking, leaderboards, and short-form video tooling. I enjoy performance tuning, simple architectures and mechanical keyboards.",
-  email: "nikhil.teja@example.com",
-  phone: "+91 98765 43210", // replace or remove
+  title: "Full Stack Engineer | React, Node.js, TypeScript, Azure",
+  bio: "",
+  skills: {
+    core: ["React", "TypeScript", "JavaScript", "Node.js", "Express.js"],
+    frontend: ["Redux", "Material UI (MUI)", "HTML", "CSS", "Framer Motion"],
+    backend: ["REST APIs", "MongoDB", "SQL", "Authentication (JWT, OAuth)"],
+    cloud_devops: ["Microsoft Azure", "Deployment", "CI/CD"],
+    tools: ["Git", "n8n", "Postman"],
+  },
+
+  email: "nikhilteja.ark@gmail.com",
+  phone: "+91 7674934065",
   location: "Hyderabad, India",
   website: "https://your-website.com",
   socials: {
     github: "https://github.com/your-username",
     linkedin: "https://linkedin.com/in/your-name",
-    twitter: "https://twitter.com/your-handle",
+    twitter: "",
   },
-  avatarUrl: "", // replace with a URL if you want a photo
+  avatarUrl:
+    "https://media.licdn.com/dms/image/v2/D5603AQGgDh1z_BfG8g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1732861642870?e=1778716800&v=beta&t=dw7IMO6dIVs0neWkjhB2atgWBp0BKLYd1S4zukPvm6Q",
 };
 
 export default function LandingPage(): JSX.Element {
@@ -77,7 +87,7 @@ export default function LandingPage(): JSX.Element {
           },
         },
       }),
-    [dark]
+    [dark],
   );
 
   const handleChange = (_: React.SyntheticEvent, v: number) => setTab(v);
@@ -90,12 +100,8 @@ export default function LandingPage(): JSX.Element {
         <Container maxWidth="xl" sx={{ pt: 6 }}>
           {/* Header */}
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 800 }}>
-              Contact
-            </Typography>
-
             <Stack direction="row" spacing={1} alignItems="center">
-              <Tooltip title={`Toggle ${dark ? "light" : "dark"} mode`}>
+              {/* <Tooltip title={`Toggle ${dark ? "light" : "dark"} mode`}>
                 <IconButton
                   onClick={() => setDark((d) => !d)}
                   color="inherit"
@@ -103,16 +109,16 @@ export default function LandingPage(): JSX.Element {
                 >
                   {dark ? <Brightness7Icon /> : <Brightness4Icon />}
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
 
-              <Button
+              {/* <Button
                 variant="outlined"
                 startIcon={<MailOutlineIcon />}
                 href="#contact"
                 size="small"
               >
                 Get in touch
-              </Button>
+              </Button> */}
             </Stack>
           </Box>
 
@@ -120,7 +126,10 @@ export default function LandingPage(): JSX.Element {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "320px 1fr" },
+              gridTemplateColumns:
+                tab === 1
+                  ? { xs: "1fr", md: "220px 1fr" }
+                  : { xs: "1fr", md: "320px 1fr" },
               gap: 4,
             }}
           >
@@ -336,7 +345,7 @@ export default function LandingPage(): JSX.Element {
                       "& .MuiTabs-indicator": { display: "none" },
                     }}
                   >
-                    {["About", "Resume", "Portfolio", "Blog", "Contact"].map(
+                    {["Resume", "Portfolio", "Blog", "Contact"].map(
                       (label, i) => (
                         <Tab
                           key={label}
@@ -355,22 +364,20 @@ export default function LandingPage(): JSX.Element {
                             "&:hover": { bgcolor: "#151515" },
                           }}
                         />
-                      )
+                      ),
                     )}
                   </Tabs>
                 </Box>
               </Box>
 
               <Box sx={{ p: 4 }}>
-                {tab === 0 && <AboutMe />}
-                {tab === 1 && (
-                  <Panel title="Resume" body="Resume content goes here." />
-                )}
-                {tab === 2 && <Projects />}
-                {tab === 3 && (
+                {/* {tab === 0 && <AboutMe />} */}
+                {tab === 0 && <Resume />}
+                {tab === 1 && <Projects />}
+                {tab === 2 && (
                   <Panel title="Blog" body="Blog list / posts here." />
                 )}
-                {tab === 4 && (
+                {tab === 3 && (
                   <Panel title="Contact" body="Contact details here." />
                 )}
               </Box>
