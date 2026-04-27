@@ -1,19 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars, no-unused-vars */
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
 import LandingPage from "./components/LandingPage";
+import Projects from "./components/Projects";
+import About from "./components/About";
+import Life from "./components/Life";
 
 function App() {
-
   return (
-    <>
-      <React.Fragment>
-        <LandingPage />
-      </React.Fragment>
-    </>
+    <Router>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/life" element={<Life />} />
+      </Routes>
+    </Router>
   );
 }
 
