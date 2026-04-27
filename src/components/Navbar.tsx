@@ -8,8 +8,8 @@ const TEAL = "#1D9E75";
 const monoFont = "'DM Mono', 'Roboto Mono', monospace";
 
 const NAV_ITEMS = [
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/" },
+  { label: "About", href: "/" },
+  { label: "Projects", href: "/projects" },
   { label: "Life", href: "/life" },
   {
     label: "LinkedIn",
