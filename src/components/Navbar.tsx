@@ -10,7 +10,13 @@ const monoFont = "'DM Mono', 'Roboto Mono', monospace";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import CodeIcon from "@mui/icons-material/Code"; // for LeetCode (no official icon in MUI)
 
-const NAV_ITEMS = [
+type NavItem = {
+  label: string;
+  href: string;
+  external?: boolean;
+  icon?: React.ReactNode;
+};
+const NAV_ITEMS: NavItem[] = [
   { label: "About", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "Life", href: "/life" },
