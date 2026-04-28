@@ -33,9 +33,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      <Router basename="/PortfolioFS/">
         <Navbar />
-
         <Box
           sx={{
             minHeight: "100vh",

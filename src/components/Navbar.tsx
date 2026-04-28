@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, IconButton } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -104,13 +104,33 @@ export default function Navbar() {
             {NAV_ITEMS.map((item) => {
               const isActive =
                 !item.external && location.pathname === item.href;
+              if (item.external) {
+                return (
+                  <Box
+                    key={item.label}
+                    component="a"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{
+                      fontFamily: monoFont,
+                      fontSize: "11.5px",
+                      color: "#fff",
+                      textDecoration: "none",
+                      position: "relative",
+                      transition: "color .2s ease",
+                      "&:hover": { color: TEAL },
+                    }}
+                  >
+                    {item.label}
+                  </Box>
+                );
+              }
               return (
                 <Box
                   key={item.label}
-                  component="a"
-                  href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noopener noreferrer" : undefined}
+                  component={Link}
+                  to={item.href}
                   sx={{
                     fontFamily: monoFont,
                     fontSize: "11.5px",
@@ -173,13 +193,32 @@ export default function Navbar() {
       >
         {NAV_ITEMS.map((item) => {
           const isActive = !item.external && location.pathname === item.href;
+          if (item.external) {
+            return (
+              <Box
+                key={item.label}
+                component="a"
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                sx={{
+                  fontFamily: monoFont,
+                  fontSize: "18px",
+                  color: "#fff",
+                  textDecoration: "none",
+                  "&:hover": { color: TEAL },
+                }}
+              >
+                {item.label}
+              </Box>
+            );
+          }
           return (
             <Box
               key={item.label}
-              component="a"
-              href={item.href}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noopener noreferrer" : undefined}
+              component={Link}
+              to={item.href}
               onClick={() => setMobileOpen(false)}
               sx={{
                 fontFamily: monoFont,
