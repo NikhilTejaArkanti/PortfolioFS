@@ -7,6 +7,9 @@ import CloseIcon from "@mui/icons-material/Close";
 const TEAL = "#1D9E75";
 const monoFont = "'DM Mono', 'Roboto Mono', monospace";
 
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import CodeIcon from "@mui/icons-material/Code"; // for LeetCode (no official icon in MUI)
+
 const NAV_ITEMS = [
   { label: "About", href: "/" },
   { label: "Projects", href: "/projects" },
@@ -15,11 +18,13 @@ const NAV_ITEMS = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/nikhiltejaa/",
     external: true,
+    icon: <LinkedInIcon />,
   },
   {
     label: "LeetCode",
     href: "https://leetcode.com/u/user8863Hi/",
     external: true,
+    icon: <CodeIcon />,
   },
 ];
 
@@ -113,16 +118,14 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
-                      fontFamily: monoFont,
-                      fontSize: "11.5px",
+                      display: "flex",
+                      alignItems: "center",
                       color: "#fff",
-                      textDecoration: "none",
-                      position: "relative",
                       transition: "color .2s ease",
                       "&:hover": { color: TEAL },
                     }}
                   >
-                    {item.label}
+                    {item.icon ? item.icon : item.label}
                   </Box>
                 );
               }
